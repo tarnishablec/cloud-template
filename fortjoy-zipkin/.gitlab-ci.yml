@@ -1,0 +1,26 @@
+stages:
+  - package
+  - push
+  - run
+  - clean
+package:
+  stage: package
+  script:
+    - /usr/local/maven/apache-maven-3.6.0/bin/mvn clean package
+    - cp target/fortjoy-zipkin-0.0.1-SNAPSHOT.jar docker
+    - cd docker
+    - docker build -t 192.168.50.50:5000/fortjoy-zipkin .
+push:
+  stage: push
+  script:
+    - docker push 192.168.50.50:5000/fortjoy-zipkin
+run:
+  stage: run
+  script:
+    - cd docker
+    - docker-compose down
+    - docker-compose up -d
+clean:
+  stage: clean
+  script:
+    - docker image prune -f

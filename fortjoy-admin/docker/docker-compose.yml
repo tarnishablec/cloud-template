@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  fortjoy-admin:
+    restart: always
+    image: 192.168.50.50:5000/fortjoy-admin
+    container_name: fortjoy-admin
+    ports:
+      - 8887:8887
+    networks:
+      - admin_network
+networks:
+  admin_network:

@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  fortjoy-zipkin:
+    restart: always
+    image: 192.168.50.50:5000/fortjoy-zipkin
+    container_name: fortjoy-zipkin
+    ports:
+      - 9411:9411
+    networks:
+      - zipkin_network
+networks:
+  zipkin_network:

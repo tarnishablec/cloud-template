@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  fortjoy-config:
+    restart: always
+    image: 192.168.50.50:5000/fortjoy-config
+    container_name: fortjoy-config
+    ports:
+      - 8888:8888
+    networks:
+      - config_network
+networks:
+  config_network:
